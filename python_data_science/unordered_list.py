@@ -111,15 +111,23 @@ class UnorderedList:
             index = None
         return index
 
-    def pop(self, index):
+    def pop(self, index=''):
         current = self.head
-        for i in range(index):
-            current = current.getNext()
-        if current != None:
-            temp = current.getData()
-            self.remove(temp)
-        else:
-            raise('Index out of range')
+        if index != '': #for pop(pos)
+            for i in range(index):
+                current = current.getNext()
+            if current != None:
+                temp = current.getData()
+                self.remove(temp)
+            else:
+                raise('Index out of range')
+        else: #for pop()
+            while current.getNext() != None:
+                previous = current
+                current = current.getNext()
+            if current.getNext() == None:
+                temp = current.getData()
+                self.remove(temp)
 
     def __str__(self): #changes contents of object list to strings
         mylist_str = 'head'
@@ -164,5 +172,8 @@ print('mylist after insert=', mylist)
 
 print('index =', mylist.index(55))
 
-mylist.pop(6)
-print('mylist after pop =', mylist)
+mylist.pop()
+print('mylist after pop() =', mylist)
+
+mylist.pop(0)
+print('mylist after pop(pos)=', mylist)
