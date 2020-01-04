@@ -1,5 +1,5 @@
 # ######################################
-# # List Programming Exercise 1 Infix to Postfix Evaluation Error Handling
+# # List Programming Exercise 2 Postfix Evaluation Error Handling
 # ######################################
 # requires: pip install pythonds
 from pythonds.basic import Stack
