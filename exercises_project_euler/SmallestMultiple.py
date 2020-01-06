@@ -28,7 +28,8 @@ def lcm(a, b):
 def smallestMultiple(start, end):
     n = 1
     for i in range(start, end):
-        n = lcm(n, i)
+        n = lcm(n, i) # finds the lcm for a given (n, i) for i in range(start, end)
+        # print(n) # check to visualize the lcm at each i in range.
     print(n)
 
 smallestMultiple(1, 20)

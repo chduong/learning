@@ -1,0 +1,4 @@
+http://mathworld.wolfram.com/UniquePrime.html
+Unique primes have their 1/prime decimals repeating.
+
+For example, 3, 11, 37, and 101 are unique primes, since they are the only primes with periods one (1/3=0.3^_), two (1/11=0.09^_), three (1/37=0.027^_), and four (1/101=0.0099^_) respectively. On the other hand, 41 and 271 both have period five (every 5 numbers after the decimal it repeats), so neither is a unique prime.
