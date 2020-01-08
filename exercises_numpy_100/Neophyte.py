@@ -1,47 +1,49 @@
-# 1. Import the numpy package under the name np.
+print('1. Import the numpy package under the name np.')
 import numpy as np
 
-# 2. Print the numpy version and the configuration.
+#%%
+print('2. Print the numpy version and the configuration.')
 print(np.__version__)
 np.__config__.show()
 
-# 3. Create a null vector of size 10.
+#%%
+print('3. Create a null vector of size 10.')
 x = np.zeros(10)
 print(x)
 
-# 4. Create a null vector of size 10 but the fifth value which is 1.
+#%%
+print('4. Create a null vector of size 10 but the fifth value which is 1.')
 x = np.zeros(10)
 x[4] = 1
 print(x)
 
-# 5. Create a vector with values ranging from 10 to 49.
+#%%
+print('5. Create a vector with values ranging from 10 to 49.')
 x = np.arange(10, 50)
 print(x)
 
-# 6. Create a 5x5 matrix with row values ranging from 0 to 4.
-x = np.zeros([5,5])
-x += np.arange(5)
-print (x)
-
-# 7. Create a vector of size 10 with values ranging from 0 to 1, both excluded.
-x = np.linspace(0, 1, 12, endpoint=True)[1:-1]
+#%%
+print('6. Create a 3x3 matrix with values ranging from 0 to 8.')
+x = np.arange(0, 9).reshape(3, 3)
 print(x)
 
-# 8. Create a random vector of size 10 and sort it.
-x = np.random.random(10)
-x.sort()
+#%%
+print('7. Find indices of non-zero elements from [1,2,0,0,4,0].')
+x = [1, 2, 0, 0, 4, 0]
+nonzero_x = np.nonzero(x)
+print('indices for nonzero elements of x =', nonzero_x)
+
+#%%
+print('8. Create a 3x3 identity matrix.')
+x = np.eye(3) # (N, M=None, k=0, dtype=<class 'float'>, order='C')[source] where N = the number of rows in the output, specified as 3 here.
 print(x)
 
-# 9. Consider two random array A anb B, check if they are equal.
-A = np.random.randint(0, 2, 5) # parameters are: low, high=None (default), size=None (default), dtype='l'
-B = np.random.randint(0, 2, 5)
-print(A)
-print(B)
-equal = np.allclose(A, B) #parameters are: array1, array2, relative tolerance, absolute tolerance
-print(equal)
-
-# 10. Create a random vector of size 30 and find the mean value.
-x = np.random.random(30)
+#%%
+print('9. Create a 5x5 matrix with values 1,2,3,4 just below the diagonal.')
+x = np.diag(1 + np.arange(0, 4), k = -1) # 1 + np.arange(4) is needed to start at 1-4 rather than 0-3. k = the diagonal in question. The default is 0 (on the diagonal). Use k>0 for diagonals above the main diagonal, and k<0 for diagonals below the main diagonal.
 print(x)
-mean = x.mean()
-print(mean)
+
+#%%
+print('10. Create a 3x3x3 array with random values.')
+x = np.random.random([3, 3, 3])
+print(x)
