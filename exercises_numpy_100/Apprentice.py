@@ -96,3 +96,15 @@ print(m0)
 m0[::n + 1] = m # slices through m0 and inserts m in steps of n + 1
 
 print(m0)
+
+#%%
+print('10. Find the nearest value from a given value in an array.')
+m = np.random.uniform(0, 1, 10) #uniform(low, high, size) draws samples from a uniform distribution, defined as p(x) = 1 / (b - a)
+n = 0.5 #this is the value that the returned element 'o' needs to be closest to.
+print('array = ', m)
+
+o = m.flat[np.abs(m - n).argmin()] #m.flat is a 1-D iterator for the matrix m that operates to subtract the absolute value of m - n and returns the function's minimum value.
+print('n =', n)
+print('nearest value to n in m =', o)
+
+
