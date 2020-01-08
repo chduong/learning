@@ -1,3 +1,7 @@
+January 8, 2019
+===============
+Converted Basics.ipynb, BabyNames.ipynb, and ElectionData.ipynb from older Jupyter Notebook to Newest version for compatibility with PyCharm 2019.3 Professional.
+
 January 4, 2013
 ================
 
