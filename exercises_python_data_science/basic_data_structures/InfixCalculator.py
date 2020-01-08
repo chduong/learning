@@ -1,5 +1,5 @@
 # ######################################
-# # List Programming Exercise 4 Build an Infix Calculator
+# # List Programming Exercise 4 Build an Infix Calculator (Simple, single digit calculator, needs space between operators and operands)
 # ######################################
 from InfixCalc import infixCalc
 
