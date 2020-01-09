@@ -1,6 +1,9 @@
 January 8, 2019
 ===============
-Converted Basics.ipynb, BabyNames.ipynb, and ElectionData.ipynb from older Jupyter Notebook to Newest version for compatibility with PyCharm 2019.3 Professional.
+In Progress: Converting Basics.ipynb, BabyNames.ipynb, and ElectionData.ipynb from older Jupyter Notebook to Newest version for compatibility with PyCharm 2019.3 Professional.
+
+Lamda Foundry: Python for Quant Finance
+Other projects: statsmodels, vbench, gpustats
 
 January 4, 2013
 ================
