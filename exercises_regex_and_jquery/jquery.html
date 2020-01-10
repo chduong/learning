@@ -1,0 +1,165 @@
+<!--jQuery Selectors-->
+
+<!-- Element Selector, selects elements based on the name:-->
+<!-- Example 1, select all <p> elements on an HTML page:-->
+<!--$('p')-->
+
+<!-- Example 2, button to hide all paragraphs:-->
+<!--$(document).ready(function(){-->
+<!--  $("button").click(function(){-->
+<!--    $("p").hide();-->
+<!--  });-->
+<!--});-->
+
+<!--Example 2, applied to hide all <p> elements:-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("button").click(function(){
+    $("p").hide();
+  });
+});
+</script>
+</head>
+<body>
+
+<h2>Heading</h2>
+<p>Paragraph 1.</p>
+<p>Paragraph 2.</p>
+
+<button>Click me to hide paragraphs</button>
+
+</body>
+</html>
+
+<!--The #id Selector-->
+<!--Example 1:-->
+<!--$("#test")-->
+
+<!--Example 2, hides all 'test' elements: -->
+<!--$(document).ready(function(){-->
+<!--  $("button").click(function(){-->
+<!--    $("#test").hide();-->
+<!--  });-->
+<!--});-->
+
+<!--Example 2, applied:-->
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("button").click(function(){
+    $("#test").hide();
+  });
+});
+</script>
+</head>
+<body>
+
+<h2>This is a heading</h2>
+
+<p>This is a paragraph.</p>
+<p id="test">This is another paragraph.</p>
+
+<button>Click me</button>
+
+</body>
+</html>
+
+<!--The .class Selector-->
+<!--Example 1:-->
+<!--$(".test")-->
+
+<!--Example 2, find all elements with a specific class:-->
+<!--$(document).ready(function(){-->
+<!--  $("button").click(function(){-->
+<!--    $(".test").hide();-->
+<!--  });-->
+<!--});-->
+
+<!--Example 2, applied:-->
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("button").click(function(){
+    $(".test").hide();
+  });
+});
+</script>
+</head>
+<body>
+
+<h2 class="test">This is a heading</h2>
+
+<p class="test">This is a paragraph.</p>
+<p>This is another paragraph.</p>
+
+<button>Click me 2</button>
+
+</body>
+</html>
+
+<!--Many more selectors: https://www.w3schools.com/jquery/jquery_selectors.asp-->
+<!--Syntax	Description-->
+<!--$("*")	Selects all elements-->
+<!--$(this)	Selects the current HTML element-->
+<!--$("p.intro")	Selects all <p> elements with class="intro"-->
+<!--$("p:first")	Selects the first <p> element-->
+<!--$("ul li:first")	Selects the first <li> element of the first <ul>-->
+<!--$("ul li:first-child")	Selects the first <li> element of every <ul>-->
+<!--$("[href]")	Selects all elements with an href attribute-->
+<!--$("a[target='_blank']")	Selects all <a> elements with a target attribute value equal to "_blank"-->
+<!--$("a[target!='_blank']")	Selects all <a> elements with a target attribute value NOT equal to "_blank"-->
+<!--$(":button")	Selects all <button> elements and <input> elements of type="button"-->
+<!--$("tr:even")	Selects all even <tr> elements-->
+<!--$("tr:odd")	Selects all odd <tr> elements-->
+
+<!--Calling functions from a separate file:-->
+<!--<head>-->
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
+<!--<script src="my_jquery_functions.js"></script>-->
+<!--</head>-->
+
+<!--Exercises:-->
+<!--1. Use the correct selector to hide all <p> elements.-->
+<!--$("p").hide();-->
+
+<!--2. Use the correct selector to hide an element with id="test".-->
+<!--$("#test").hide();-->
+
+<!--3. Use the correct selector to hide all elements with class="test".-->
+<!--$(".test").hide();-->
+
+<!--4. Use the correct selector to hide all elements in the document.-->
+<!--$("*").hide();-->
+
+<!--5. Use the correct selector to hide all elements with an href attribute.-->
+<!--$("[href]").hide();-->
+
+<!--6. Use the correct selector to hide all odd table rows in a table.-->
+<!--$("tr:odd").hide();-->
+
+
+
+
+
+
+<!--Default document:-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
