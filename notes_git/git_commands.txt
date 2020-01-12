@@ -1,0 +1,54 @@
+Learning Git
+Configurations:
+git config --global user.name "Your Name" <modifies the user name on commits>
+git config --global user.email "your-email@gmail.com" <modifies the email associated with your commit>
+git config --global color.ui true <gives color to your git output in terminal>
+git config --list <view git configurations>
+
+Starting a Repository:
+git init <initializes git directory in folder your current selected directory (the project's root directory).>
+git status <shows the current status of the branch you're working on, as well as tracked and untracked files>
+
+Staging Files:
+git add filename.txt <adds a single file for staging commits/tracks it>
+git add filename1.txt filename2.jpg filename3.py <adds multiple specific files to the staging area>
+git add . <adds all files in root directory for staging>
+git add --all <find all new and updated files everywhere throughout the project for staging>
+git add --A <same as git add --all>
+
+git rm --cached filename.txt <rm = remove, removes the filename.txt from the staging area for commits and untracks it>
+git reset another-file.txt <reset is similar to the opposite of add, works similarly to git rm --cached>
+
+Committing to a Repository:
+git commit -m "Add three files" <commits the changes in the staging area, with -m = message, adds a message saying "Add three files" to your commit action>
+git commit -a -m "Do something once more" <adds files to staging and commits immediately>
+git reset --soft HEAD^ <undo's a commit and moves the head pointer 1 version back from the most recent commit, this is one way of removing the most recent changes that have already been committed and moving the version back one step prior to the most recent changes>
+git commit --amend -m "your message here" <requires the git add file.txt first, then you can commit --amend to incorporate the file into your latest commit, this is good for when you forget to commit a single file from a bunch of files.>
+
+Push and Pull To and From a Remote Repository:
+git remote add origin https://github.com/YourUsername/some-small-app.git <adds a remote master to push/pull from, origin is the remote master's name by default, but can be changed. The URL should be the one made from your github repository, or wherever you want to push your file, heroku, etc...>
+git push -u origin master <pushes changes from master to origin, the -u = update, lets you only type "git push" next time, rather than git push origin master>
+git remote add origin git@github.com:YourUsername/your-app.git <for SSH options of add>
+git remote -v <lists all remote repositories you've connected to>
+git clone https://github.com/YourUsername/some-small-app.git [directory name] <clones a copy of the repository from the URL and makes a new directory in your current directory. The name is whatever you specify, if no name is given, then it defaults to the repository's name.>
+    -With clone, two things occur:
+    -Download the entire project into a specified directory
+    -Create a remote repository called origin and point it to the URL you pass.
+git pull <when changes from other collaborators have occurred, to see those changes you pull from the repository to get a copy of their code in your local repository.>
+    -With pull, these things occur:
+    -Pull changes in the current branch made by other developers
+    -Synchronize your local repository with the remote repository.
+    -Does not create a new directory with the project name or change your origin URL
+
+Commands for Working With Branches:
+git branch <lists the branches>
+git branch user-profile <creates a new branch from master for user-profile features (the name can be anything you specify, but for clarity, should involve the feature you're adding)
+git checkout user-profile <lets you checkout the branch to work/modify and prevents others from modifying the branch while you have it checked out. Checked out branches are denoted with * next to their listing>
+git merge user-profile <to combine user-profile with master, checkout the master branch, then use the git merge user-profile command to combine changes from user-profile with master.>
+git branch -d user-profile <-d option deletes a branch, useful after a merge to keep the master branch clean. Deletes user-profile branch (use after you have properly merged user-profile into the master branch, or you lose everything you did in user-profile>
+git checkout -b admin-panel <combines checkout and branch commands, makes a new branch named admin-panel and then checks it out>
+
+
+branches = the path you're working on, can be merged later with the base branch (master branch).
+commits = a snapshot of the current state of the project's root directory.
+
