@@ -1,0 +1,285 @@
+# ######################################
+# # GIT
+# ######################################
+# ######################################
+# # Making Commits and Branches
+# ######################################
+in terminal:
+git commit = makes file commit to git
+git branch newImage = branches from the master and creates a new branch "newImage" that refers to the master commit
+git checkout <name> = selects the branch of interest
+command 1; command 2 = run multiple commands in one line
+git checkout -b <yourbranchname> = shortcut to create a new branch and check it out
+
+# ######################################
+# # Branches and Merging
+# ######################################
+git merge bugFix = (master selected), branches next commit to contain all previous commits of master and bugFix, (may separate master from bugFix, so master has all of the work in the repository, but bugFix does not)
+
+    to fix this issue of master and bugFix being separate, merge master into bugFix by:
+
+git checkout bugFix; git merge master = now both branches contain all the work in the repository
+
+# ######################################
+# # Another way to Merge, using Rebasing
+# ######################################
+git rebase master = transforms the checkout from bugFix into a linear sequence where branches are directly below master.
+
+git rebase bugFix = with checkout on on master, master is now rebased forward to bugFix.
+
+# ######################################
+# # HEAD
+# ######################################
+HEAD means symbolic name for the currently checked out commit.
+
+detaching head means attaching it to a commit instead of a branch.
+
+Example:
+HEAD -> master -> C1
+git checkout C1
+HEAD -> C1
+
+# ######################################
+# # Relative refs
+# ######################################
+^ = moving upwards one commit at a time
+~<num> = moving upwards a number of times
+
+Example 1:
+git checkout master^ = moves to the first parent of master
+
+Example 2:
+git checkout C3; git checkout HEAD^; git checkout HEAD^; git checkout HEAD^ = moves from C3 to C0 with HEAD
+
+Example 3:
+git checkout HEAD~4 = moves up 4 levels
+
+# ######################################
+# # Branch Forcing
+# ######################################
+git checkout HEAD~4 = moves head 4 up
+
+git branch -f master HEAD~3 = force branch master to head 3 up.
+
+Steps:
+git branch -f bugFix HEAD~2
+git checkout C6
+git branch -f master
+git checkout C1
+
+Optimized steps:
+git branch -f master C6
+git checkout HEAD~1
+git branch -f bugFix HEAD~1
+
+# ######################################
+# # Reversing Changes in Git
+# ######################################
+git reset HEAD~1 = resets master 1 version above current
+git revert HEAD = introduces changes that revert a project, so C2 becomes C2' (basically C1). Allows you to push out changes to share with others. (Good for remote branches)
+
+# ######################################
+# # Git Cherry-Pick
+# ######################################
+git cherry-pick C2 C4 = copies the changes from C2 and C4 (from 1 branch) and copies it below current master
+
+# ######################################
+# # Interactive Rebase
+# ######################################
+git rebase -i = interactive rebase command by specifying -i option
+
+git rebase -i HEAD~4 = shows options from C2-5 to omit or select, generates a branch 4 steps from current master with same 4 levels as the ones you selected (C2-5)
+
+EXTREMELY USEFUL FOR BUG FIXES
+git rebase -i
+git cherry-pick
+
+git rebase -i master
+[select bugFix]
+git rebase bugFix master
+[master goes from 1 above bugFix to where bugFix is]
+
+# ######################################
+# # Git Tags
+# ######################################
+anchor points for code and cannot be modified
+
+git tag v1 C1 = tags v1 at C1
+
+# ######################################
+# # Git Describe
+# ######################################
+git describe <ref> = shows how far you are away from an anchor or commit point with respect to <ref>, if no <ref> is given, HEAD is used.
+
+output:
+<tag>_<numCommits>_g<hash>
+
+where <tag> = closest ancestor tag
+<numCommits> = how many commits away from tag
+<hash> = hash of the commit being described
+
+Example:
+git describe master
+output:
+v1_2_gC2
+
+git describe side
+output:
+v2_1_gC4
+
+# ######################################
+# # Rebasing Multiple Branches
+# ######################################
+git checkout X
+git rebase Y = moves X below Y
+
+FAST option:
+git rebase master bugFix
+git rebase bugFix side
+git rebase side another
+git rebase another master
+
+# ######################################
+# # Specifying Parents
+# ######################################
+git checkout HEAD~^2~2 (chains moving up single branch, selecting between two branches, then moving up 1 branch again)
+
+git branch bugWork master^^2^
+or
+git branch bugWork master~^2~ = creates bugWork branch up specific steps from master
+
+git checkout one
+git cherry-pick C4 C3 C2
+git checkout two
+git cherry-pick C5 C4 C3 C2
+git branch -f three C2
+
+# ######################################
+# # Remote Branches
+# ######################################
+git clone = produces remote branch (o/master)
+
+remote servers tend to be named 'origin'
+
+<remote name>/<branch name>
+
+git checkout o/master; git commit = commits to remote branch
+
+# ######################################
+# # Git Fetch
+# ######################################
+git fetch <http:// or git:// protocol> = grabs data from remote repository
+
+# ######################################
+# # Git Pull
+# ######################################
+Grab data from remote
+Can use:
+git cherry-pick o/master
+git rebase o/master
+git merge o/master
+
+equivalent to:
+git pull
+
+# ######################################
+# # Git FakeTeamwork
+# ######################################
+Simulate collaborations (fake command)
+
+ways to get remote work that has been changed and merge with your own:
+git fetch; git rebase o/master; git push
+git fetch; git merge o/master; git push
+
+git pull = is shorthand for fetch and merge
+git pull --rebase = is shorthand for fetch and rebase
+
+# ######################################
+# # Merging Feature Branches
+# ######################################
+git pull --rebase; git push
+
+can also use
+
+git pull
+git merge X (but this method can be messy)
+
+# ######################################
+# # Tracking remote and local branches with arbitrary assignments
+# ######################################
+local branch master set to track remote branch o/master (normally)
+
+Method 1:
+git checkout -b totallyNotMaster o/master = this changes totallyNotMaster to track o/master
+
+Method 2:
+git branch -u o/master foo
+git branch -u o/master (if foo is checked out already)
+
+# ######################################
+# # Push Arguments
+# ######################################
+git push <remote> <place>
+
+git push origin master
+
+translates to this in English:
+
+Go to the branch named "master" in my repository, grab all the commits, and then go to the branch "master" on the remote named "origin". Place whatever commits are missing on that branch and then tell me when you're done.
+
+By specifying master as the "place" argument, we told git where the commits will come from and where the commits will go. It's essentially the "place" or "location" to synchronize between the two repositories.
+
+Keep in mind that since we told git everything it needs to know (by specifying both arguments), it totally ignores where we are checked out!
+
+git checkout C0; git push origin master
+
+# ######################################
+# # Push Arguments Details
+# ######################################
+git push origin <source>:<destination>
+
+git push origin foo^:master
+
+git push origin master:newBranch
+
+# ######################################
+# # Git fetch arguments
+# ######################################
+git fetch <remote> <place> (or <source>:<destination>)
+git fetch origin foo
+
+git fetch origin master~1:foo
+git fetch origin foo:master
+git checkout foo
+git merge master
+
+# ######################################
+# # Oddities of <source>
+# ######################################
+Git abuses the <source> parameter in two weird ways. These two abuses come from the fact that you can technically specify "nothing" as a valid source for both git push and git fetch. The way you specify nothing is via an empty argument:
+
+git push origin :side (deletes side)
+git fetch origin :bugFix (adds bugFix)
+
+# ######################################
+# # Git Pull Arguments
+# ######################################
+Here are some equivalent commands in git:
+
+git pull origin foo is equal to:
+
+git fetch origin foo; git merge o/foo
+
+And...
+
+git pull origin bar~1:bugFix is equal to:
+
+git fetch origin bar~1:bugFix; git merge bugFix
+
+See? git pull is really just shorthand for fetch + merge, and all git pull cares about is where the commits ended up (the destination argument that it figures out during fetch).
+
+git pull origin master:foo
+Created a new branch locally named foo, downloaded commits from remote's master onto that branch foo, and then merged that branch into our currently checked out branch bar. It's over 9000!!!
+
+git pull origin bar:foo
+git pull origin master:side
