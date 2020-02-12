@@ -2,6 +2,8 @@ import os
 import sys
 import math
 
+# This solution has overflow errors for integers above 307 characters.
+
 # Complete the solve function below.
 
 # From wikipedia: https://en.wikipedia.org/wiki/Triangular_number
@@ -40,6 +42,7 @@ if __name__ == '__main__':
 # import sys
 # import math
 #
+# # This solution has overflow errors for integers above 307 characters.
 # def triangular_num(x):
 #     # x is an integer if 8 * x + 1 is a squared number
 #     if math.sqrt(8 * x + 1) % 1 == 0:
