@@ -1,24 +1,25 @@
 import os
 import sys
-import math
+from decimal import *
 
-# This solution has overflow errors for integers above 307 characters.
+# Set decimal precision (for working with large numbers, 50 characters is arbitrary).
+# If this precision is too large, you will fail some test cases due to timeout.
+getcontext().prec = 50
 
-# Complete the solve function below.
-
-# From wikipedia: https://en.wikipedia.org/wiki/Triangular_number
 def triangular_num(x):
-    # x is an integer if 8 * x + 1 is a squared number
-    if math.sqrt(8 * x + 1) % 1 == 0:
-        # Definition of triangular numbers
-        n = (math.sqrt(8 * x + 1) - 1) / 2
+    # x is an integer if 8 * x + 1 is a squared number, thus the square root's modulus should not have a remainder
+    if Decimal(8 * x + 1).sqrt() % Decimal(1) == 0:
+        # Definition of triangular numbers (from positive component of quadratic equation)
+        n = Decimal((8 * x + 1) - 1).sqrt() / Decimal(2)
         return int(n)
     return -1
+
 
 # Print results
 def solve(n):
     num = triangular_num(n)
-    if triangular_num(n) > -1:
+
+    if num > -1:
         return 'Go On Bob ' + str(num)
     else:
         return 'Better Luck Next Time'
@@ -40,21 +41,26 @@ if __name__ == '__main__':
 
 ####### LOCAL
 # import sys
-# import math
+# from decimal import *
 #
-# # This solution has overflow errors for integers above 307 characters.
+# # Set decimal precision (for working with large numbers, 50 characters is arbitrary).
+# # If this precision is too large, you will fail some test cases due to timeout.
+# getcontext().prec = 50
+#
 # def triangular_num(x):
-#     # x is an integer if 8 * x + 1 is a squared number
-#     if math.sqrt(8 * x + 1) % 1 == 0:
-#         # Definition of triangular numbers
-#         n = (math.sqrt(8 * x + 1) - 1) / 2
+#     # x is an integer if 8 * x + 1 is a squared number, thus the square root's modulus should not have a remainder
+#     if Decimal(8 * x + 1).sqrt() % Decimal(1) == 0:
+#         # Definition of triangular numbers (from positive component of quadratic equation)
+#         n = Decimal((8 * x + 1) - 1).sqrt() / Decimal(2)
 #         return int(n)
 #     return -1
+#
 #
 # # Print results
 # def solve(n):
 #     num = triangular_num(n)
-#     if triangular_num(n) > -1:
+#
+#     if num > -1:
 #         return 'Go On Bob ' + str(num)
 #     else:
 #         return 'Better Luck Next Time'
@@ -69,3 +75,9 @@ if __name__ == '__main__':
 #
 #         result = solve(n)
 #         print(result)
+
+####### SIDE NOTE: To find the n_th triangular number (in this case, x = 10**499):
+# x = Decimal(10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000)
+
+# # Formula:
+# num = Decimal(x * (x + 1)) / Decimal(2)
