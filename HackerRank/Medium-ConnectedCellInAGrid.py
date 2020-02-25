@@ -4,11 +4,11 @@ import os
 
 # Complete the connectedCell function below.
 def connectedCell(matrix):
+    # Matrix, n row x m columns
     n = len(matrix)
-
-    # copy of original matrix filled with False to track what's been visited
     m = len(matrix[0])
 
+    # copy of original matrix filled with False to track what's been visited
     visited = [[False for j in range(m)] for i in range(n)]
     maxSize = 0
 
