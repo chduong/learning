@@ -15,8 +15,10 @@ def connectedCell(matrix):
     def dfs(i, j):
         size = 1
         visited[i][j] = True
+        # Combination for traversal directions
         for p in range(i-1, i + 2):
             for q in range(j-1, j + 2):
+                # Restricts the traversal directions to prevent going out of matrix bounds
                 if p >= 0 and p < n and q >= 0 and q < m and (p != i or q != j):
                     if visited[p][q] == False and matrix[p][q] == 1:
                         size += dfs(p, q)
@@ -93,3 +95,26 @@ if __name__ == '__main__':
 #     result = connectedCell(matrix)
 #
 #     print(result)
+
+####### From HackerRank Discussions, Different Way of Doing DFS
+# def connectedCell(matrix):
+#     def dfs(nrow, ncol, r, c):
+#         directions = [(0, 1),(0, -1),(1, 0),(-1, 0),(1, 1),(-1, 1),(1, -1), (-1, -1)]
+#         if r < 0 or r >= nrow or c < 0 or c >= ncol or matrix[r][c] != 1:
+#             return
+#         timestamp[0] += 1
+#         matrix[r][c] = 'X'
+#         for dr, dc in directions:
+#             nr, nc = r + dr, c + dc
+#             dfs(nrow, ncol, nr, nc)
+#
+#     nrow, ncol = len(matrix), len(matrix[0])
+#     timestamp = [0]
+#     largest = 0
+#     for r in range(nrow):
+#         for c in range(ncol):
+#             if matrix[r][c] == 1:
+#                 dfs(nrow, ncol, r, c)
+#                 largest = max(largest, timestamp[0])
+#                 timestamp[0] = 0
+#     return largest
